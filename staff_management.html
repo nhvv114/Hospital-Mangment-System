@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Staff Management</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Add New Staff Member</h2>
+    <form method="POST" action="{{ url_for('staff_management') }}">
+        Name: <input type="text" name="name" required><br>
+        Position: <input type="text" name="position" required><br>
+        Department ID: <input type="number" name="department_id" required><br>
+        <input type="submit" value="Add Staff">
+    </form>
+
+    <h2>Staff Members</h2>
+    {% if staff %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Department ID</th>
+        </tr>
+        {% for member in staff %}
+        <tr>
+            <td>{{ member.ID }}</td>
+            <td>{{ member.Name }}</td>
+            <td>{{ member.Position }}</td>
+            <td>{{ member["Department ID"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No staff members found</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Management</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Add New Doctor</h2>
+    <form method="POST" action="{{ url_for('doctor_management') }}">
+        Name: <input type="text" name="name" required><br>
+        Specialization: <input type="text" name="specialization" required><br>
+        Contact Info: <input type="text" name="contact_info" required><br>
+        Department ID: <input type="number" name="department_id" required><br>
+        <input type="submit" value="Add Doctor">
+    </form>
+
+    <h2>Doctors</h2>
+    {% if doctors %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Specialization</th>
+            <th>Contact Info</th>
+            <th>Department ID</th>
+        </tr>
+        {% for doctor in doctors %}
+        <tr>
+            <td>{{ doctor['ID'] }}</td>
+            <td>{{ doctor['Name'] }}</td>
+            <td>{{ doctor['Specialization'] }}</td>
+            <td>{{ doctor['Contact Info'] }}</td>
+            <td>{{ doctor['Department ID'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No doctors found</p>
+    {% endif %}
+    
+</body>
+</html>

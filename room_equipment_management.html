@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room and Equipment Management</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Manage Room</h2>
+    <form method="POST" action="{{ url_for('room_equipment_management') }}">
+        Room ID: <input type="number" name="room_id" required><br>
+        Status: <select name="room_status">
+            <option value="Available">Available</option>
+            <option value="Occupied">Occupied</option>
+            <option value="Maintenance">Maintenance</option>
+        </select><br>
+        <input type="submit" name="update_room" value="Update Room">
+    </form>
+
+    <h2>Manage Equipment</h2>
+    <form method="POST" action="{{ url_for('room_equipment_management') }}">
+        Equipment ID: <input type="number" name="equipment_id" required><br>
+        Status: <select name="equipment_status">
+            <option value="Good">Good</option>
+            <option value="Maintenance">Maintenance</option>
+            <option value="Repair">Repair</option>
+        </select><br>
+        <input type="submit" name="update_equipment" value="Update Equipment">
+    </form>
+
+    <h2>Current Room Status</h2>
+    <table>
+        <!-- Table headers and rows for rooms -->
+        <tr>
+            <th>Room ID</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Department ID</th>
+        {% for room in rooms %}
+        <tr>
+            <td>{{ room.ID }}</td>
+            <td>{{ room.Type }}</td>
+            <td>{{ room.Status }}</td>
+            <td>{{ room["Department ID"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Current Equipment Status</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Department ID</th>
+        {% for item in equipment %}
+        <tr>
+            <td>{{ item.ID }}</td>
+            <td>{{ item.Name }}</td>
+            <td>{{ item.Status }}</td>
+            <td>{{ item["Department ID"] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

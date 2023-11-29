@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Billing Details</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Billing Details</h2>
+    <form method="POST" action="{{ url_for('billing_details') }}">
+        Patient ID: <input type="number" name="patient_id" required><br>
+        <input type="submit" value="Show Details">
+    </form>
+
+    {% if billing_info %}
+    <h3>Billing Information</h3>
+    <table>
+        <tr>
+            <th>Patient ID</th>
+            <th>Provider</th>
+            <th>Policy Number</th>
+            <th>Amount</th>
+            <th>Date</th>
+            <th>Payment Method</th>
+        </tr>
+        {% for row in billing_info %}
+        <tr>
+            <td>{{ row.patient_id }}</td>
+            <td>{{ row.provider }}</td>
+            <td>{{ row.policy_number }}</td>
+            <td>{{ row.amount }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.payment_method }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

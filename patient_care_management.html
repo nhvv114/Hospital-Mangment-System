@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient Care Management</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Patient Care Management</h2>
+    <form method="POST" action="{{ url_for('patient_care_management') }}">
+        Patient ID: <input type="number" name="patient_id" required><br>
+        <input type="submit" value="Care Details">
+    </form>
+
+    {% if care_details %}
+    <h3>Care Details</h3>
+    <table>
+        <tr>
+            <!-- Table Headers based on the columns -->
+            <th>Patient ID</th>
+            <th>Diagnosis</th>
+            <th>treatment</th> 
+            <th>date</th> 
+            <th>medication_name</th> 
+            <th>manufacturer</th>
+            <th>dosage</th>
+            <th>instructions</th> 
+            <th>nurse_name</th>
+            <th>nurse_contact_info</th> 
+            <th>surgery_type</th>                                
+            <th>test_name</th>
+            <th>test_result</th>
+        </tr>
+        {% for row in care_details %}
+        <tr>
+            <td>{{ row.patient_id }}</td>
+            <td>{{ row.diagnosis }}</td>
+            <td>{{ row.treatment }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.medication_name }}</td>
+            <td>{{ row.instructions }}</td>
+            <td>{{ row.manufacturer }}</td>
+            <td>{{ row.dosage }}</td>
+            <td>{{ row.nurse_name }}</td>
+            <td>{{ row.nurse_contact_info }}</td>
+            <td>{{ row.surgery_type }}</td>
+            <td>{{ row.test_name }}</td>
+            <td>{{ row.test_result }}</td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+</body>
+</html>

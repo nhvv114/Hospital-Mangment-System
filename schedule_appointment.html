@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Schedule Appointment</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h2>Schedule New Appointment</h2>
+    <form method="POST" action="{{ url_for('schedule_appointment') }}">
+        Patient ID: <input type="number" name="patient_id" required><br>
+        Doctor ID: <input type="number" name="doctor_id" required><br>
+        Date: <input type="date" name="date" required><br>
+        Time: <input type="time" name="time" required><br>
+        Purpose: <textarea name="purpose" required></textarea><br>
+        <input type="submit" value="Schedule Appointment">
+    </form>
+
+    <h2>Upcoming Appointments</h2>
+    {% if appointments %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Patient ID</th>
+            <th>Doctor ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Purpose</th>
+        </tr>
+        {% for appointment in appointments %}
+        <tr>
+            <td>{{ appointment[0] }}</td>
+            <td>{{ appointment[1] }}</td>
+            <td>{{ appointment[2] }}</td>
+            <td>{{ appointment[3] }}</td>
+            <td>{{ appointment[4] }}</td>
+            <td>{{ appointment[5] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>There are no upcoming appointments</p>
+    {% endif %}
+</body>
+</html>

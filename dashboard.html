@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="\static\style.css">
+</head>
+<body>
+    <h1>Hospital Management System Dashboard</h1>
+
+    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+    <li><a href="{{ url_for('add_patient') }}">Add Patient</a></li>
+    <li><a href="{{ url_for('search_patients') }}">Search Patient</a></li>
+    <li><a href="{{ url_for('schedule_appointment') }}">Schedule Appointment</a></li>
+    <li><a href="{{ url_for('doctor_management') }}">Doctors</a></li>
+    <li><a href="{{ url_for('staff_management') }}">Staff Management</a></li>
+    <li><a href="{{ url_for('room_equipment_management') }}">Room and Equipment Management</a></li>
+    <li><a href="{{ url_for('patient_care_management') }}">Patient Care Management</a></li>
+    <li><a href="{{ url_for('billing_details') }}">Billing Details</a></li>
+    <div>
+        <h2>Key Metrics</h2>
+        <p>Total Patients: {{ patient_count }}</p>
+        <p>Total Doctors: {{ doctor_count }}</p>
+        <p>Total Rooms: {{ room_count }}</p>
+    </div>
+    <div>
+        <h2>Room Status Overview</h2>
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Count</th>
+            </tr>
+            {% for row in room_status.itertuples() %}
+            <tr>
+                <td>{{ row.Type }}</td>
+                <td>{{ row.Status }}</td>
+                <td>{{ row.Count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
